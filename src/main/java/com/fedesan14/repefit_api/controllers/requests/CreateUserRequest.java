@@ -7,7 +7,7 @@ public record CreateUserRequest(
         @NotBlank
         String username,
         @NotBlank
-        @Size(min = 1)
+        @Size(min = 5, message = "La longitud de la contraseña debe ser minimo 5 caracteres")
         String password,
         @NotBlank
         String repeatedPassword
