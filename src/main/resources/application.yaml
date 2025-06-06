@@ -2,7 +2,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/repefit?createDatabaseIfNotExist=true
     username: ${DATABASE_USERNAME}
