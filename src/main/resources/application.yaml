@@ -10,7 +10,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 springdoc:
   swagger-ui:
-    use-root-path: true
+    path: /docs
 security:
   access-token-expiration: 60
   refresh-token-expiration: 120

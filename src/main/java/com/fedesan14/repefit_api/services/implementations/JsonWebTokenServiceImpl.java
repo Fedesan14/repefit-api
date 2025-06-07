@@ -1,9 +1,11 @@
 package com.fedesan14.repefit_api.services.implementations;
 
 import com.fedesan14.repefit_api.services.interfaces.JsonWebTokenService;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 @Component
+@NoArgsConstructor
 public class JsonWebTokenServiceImpl implements JsonWebTokenService {
 
     @Value("${security.access-token-expiration}")
@@ -38,6 +41,17 @@ public class JsonWebTokenServiceImpl implements JsonWebTokenService {
         );
     }
 
+    @Override
+    public String getSubject(String jwt) {
+        return getClaims(jwt).getSubject();
+    }
+
+    @Override
+    public boolean isValid(String jwt) {
+        Date expiration = getClaims(jwt).getExpiration();
+        return new Date().before(expiration);
+    }
+
     private String buildJwt(String subject, Instant expiration) {
         return Jwts
                 .builder()
@@ -52,5 +66,14 @@ public class JsonWebTokenServiceImpl implements JsonWebTokenService {
         return Keys.hmacShaKeyFor(
                 Decoders.BASE64.decode(securityKey)
         );
+    }
+
+    private Claims getClaims(String jwt) {
+        return Jwts
+                .parser()
+                .verifyWith(getSecretKey())
+                .build()
+                .parseSignedClaims(jwt)
+                .getPayload();
     }
 }
