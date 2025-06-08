@@ -2,19 +2,14 @@ package com.fedesan14.repefit_api.utils;
 
 import java.util.Base64;
 
-import static com.fedesan14.repefit_api.utils.Constants.BASIC_PREFIX;
-import static com.fedesan14.repefit_api.utils.Constants.COLON_SYMBOL;
-
 public class BasicAuthUtils {
-    private BasicAuthUtils() {}
+    private static String BASIC_PREFIX = "Basic ";
+    private static String COLON_SYMBOL = ":";
 
+    private BasicAuthUtils() {}
 
     public static String extractUsername(String authorization) {
         return getCredentials(authorization)[0];
-    }
-
-    public static String extractPassword(String authorization) {
-        return "";
     }
 
     private static String[] getCredentials(String authorization) {

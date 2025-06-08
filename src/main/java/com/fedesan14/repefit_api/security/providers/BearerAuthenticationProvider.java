@@ -1,7 +1,7 @@
 package com.fedesan14.repefit_api.security.providers;
 
 import com.fedesan14.repefit_api.data.models.User;
-import com.fedesan14.repefit_api.security.BearerTokenAuthentication;
+import com.fedesan14.repefit_api.security.authentications.BearerTokenAuthentication;
 import com.fedesan14.repefit_api.services.interfaces.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;

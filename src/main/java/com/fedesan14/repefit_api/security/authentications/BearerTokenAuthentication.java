@@ -1,4 +1,4 @@
-package com.fedesan14.repefit_api.security;
+package com.fedesan14.repefit_api.security.authentications;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

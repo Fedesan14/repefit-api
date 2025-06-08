@@ -1,6 +1,6 @@
 package com.fedesan14.repefit_api.security.converters;
 
-import com.fedesan14.repefit_api.security.BearerTokenAuthentication;
+import com.fedesan14.repefit_api.security.authentications.BearerTokenAuthentication;
 import com.fedesan14.repefit_api.services.interfaces.JsonWebTokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
