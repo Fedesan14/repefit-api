@@ -2,7 +2,9 @@ package com.fedesan14.repefit_api.controllers.implementations;
 
 import com.fedesan14.repefit_api.controllers.interfaces.AuthController;
 import com.fedesan14.repefit_api.controllers.requests.CreateUserRequest;
+import com.fedesan14.repefit_api.controllers.responses.SignInResponse;
 import com.fedesan14.repefit_api.services.interfaces.AuthService;
+import com.fedesan14.repefit_api.utils.BasicAuthUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,5 +17,12 @@ public class AuthControllerImpl implements AuthController {
     @Override
     public void signUp(CreateUserRequest createUserRequest) {
         authService.signup(createUserRequest);
+    }
+
+    @Override
+    public SignInResponse signIn(String authorization) {
+        return authService.signIn(
+                BasicAuthUtils.extractUsername(authorization)
+        );
     }
 }

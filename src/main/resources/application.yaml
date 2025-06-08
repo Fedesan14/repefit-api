@@ -2,7 +2,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/repefit?createDatabaseIfNotExist=true
     username: ${DATABASE_USERNAME}
@@ -10,8 +10,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 springdoc:
   swagger-ui:
-    use-root-path: true
-
+    path: /docs
+security:
+  access-token-expiration: 60
+  refresh-token-expiration: 120
+  secret: ${SECURITY_KEY}
 logging:
   level:
     org:
